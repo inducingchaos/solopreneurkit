@@ -1,18 +1,23 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
-
-import { env } from "~/env";
-import * as schema from "./schema";
-
 /**
- * Cache the database connection in development. This avoids creating a new connection on every HMR
- * update.
+ * @file Creates a connection to the database.
+ * @author Riley Barabash <riley@rileybarabash.com>
+ *
+ * @tags
+ * - #database
  */
-const globalForDb = globalThis as unknown as {
-  conn: postgres.Sql | undefined;
-};
 
-const conn = globalForDb.conn ?? postgres(env.DATABASE_URL);
-if (env.NODE_ENV !== "production") globalForDb.conn = conn;
+import * as schema from "./schemas"
+import { sql } from "@vercel/postgres"
+import { drizzle } from "drizzle-orm/vercel-postgres"
 
-export const db = drizzle(conn, { schema });
+//  Configure the Drizzle instance with the schema.
+
+export const db = drizzle(sql, { schema })
+
+//  Export the type definition of the database.
+
+export type Drizzle = typeof db
+
+//  Re-export the schema.
+
+export { schema }
