@@ -1,7 +1,21 @@
-const config = {
-  plugins: {
-    tailwindcss: {},
-  },
-};
+/**
+ * @file Used by Tailwind for transforming CSS.
+ * @author Riley Barabash <riley@rileybarabash.com>
+ *
+ * @tags
+ * - #configuration
+ * - #postcss
+ * - #css
+ * - #tailwind
+ */
 
-module.exports = config;
+/**
+ * Configuration options for PostCSS.
+ */
+const config = {
+    plugins: {
+        tailwindcss: {}
+    }
+}
+
+module.exports = config
