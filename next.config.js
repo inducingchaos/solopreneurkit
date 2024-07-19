@@ -1,10 +1,23 @@
 /**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
+ * @file Config for Next.js.
+ * @author Riley Barabash <riley@rileybarabash.com>
+ *
+ * @tags
+ * - #configuration
+ * - #nextjs
+ * - #build
  */
-await import("./src/env.js");
 
-/** @type {import("next").NextConfig} */
-const config = {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { env } = await import("./src/env.js")
 
-export default config;
+/**
+ * Configuration options for Next.js.
+ *
+ * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful for Docker builds.
+ *
+ * @type { import ( "next" ) .NextConfig }
+ */
+const config = {}
+
+export default config

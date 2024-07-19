@@ -17,7 +17,7 @@ import { pgTableCreator } from "drizzle-orm/pg-core"
 /**
  * Creates a table name based on the application's settings and environment.
  */
-const createTableName = (name: string) => `sk_${name}`
+export const createTableName = (name: string): string => `sk_${name}`
 
 /**
  * Uses Drizzle's multi-project schema feature, which allows you to use the same database instance for multiple projects.

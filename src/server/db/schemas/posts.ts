@@ -7,7 +7,7 @@
  * - #posts
  */
 
-import { createPgTable } from "@sdkit/utils"
+import { createPgTable } from "@sdkit/utils/db"
 import { sql } from "drizzle-orm"
 import { index, serial, timestamp, varchar } from "drizzle-orm/pg-core"
 
