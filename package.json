@@ -23,7 +23,8 @@
         "dev": "next dev --turbo",
         "lint": "next lint",
         "start": "next start",
-        "execute": "sh -c 'IFS=\"\" tsx --env-file ./.env ./src/scripts/$@.ts $*' sh"
+        "execute": "sh -c 'IFS=\"\" tsx --env-file ./.env ./src/scripts/$@.ts $*' sh",
+        "stabilize": "node ./src/scripts/bash/index.js"
     },
     "dependencies": {
         "@t3-oss/env-nextjs": "^0.10.1",

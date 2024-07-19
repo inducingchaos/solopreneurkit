@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 
-import { api } from "~/trpc/react"
+import { api } from "~/lib/infra/rpc/react"
 
-export function LatestPost() {
+export function LatestPost(): JSX.Element {
     const [latestPost] = api.posts.getLatest.useSuspenseQuery()
 
     const utils = api.useUtils()

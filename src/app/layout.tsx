@@ -3,7 +3,7 @@ import "~/styles/globals.css"
 import { type Metadata } from "next"
 import { IBM_Plex_Mono, Inter } from "next/font/google"
 
-import { TRPCReactProvider } from "~/trpc/react"
+import { TRPCReactProvider } from "~/lib/infra/rpc/react"
 
 //  Import fonts.
 
