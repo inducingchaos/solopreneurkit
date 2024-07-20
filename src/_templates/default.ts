@@ -24,13 +24,17 @@
  */
 
 /**
- * Create a type for a function parameter set if there is a possibility for reuse.
+ * Create an interface for a function parameter set if there is a possibility for reuse.
  *
  * We use types to avoid the unnecessary unpredictability of inheritance with interfaces, unless explicitly needed.
  *
+ * Actually I changed my mind, Matt Pocock: interfaces do sound cooler.
+ *
+ * Aim to use the 'params' naming convention for functions where all parameters are required, 'options' when most of the parameters are optional, and the 'props' convention for React function components. We're trying to be contextual here.
+ *
  * @example
  * //  An example of how the params object is used. Not required for internal definitions.
- * const exampleParams = {
+ * interface exampleParams {
  *
  *     firstName: 'John',
  *     lastName: 'Doe',
@@ -38,7 +42,7 @@
  *
  * }
  */
-type ExampleParams = {
+interface ExampleParams {
     /**
      * The description of the parameter.
      */

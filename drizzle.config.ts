@@ -10,7 +10,7 @@
  */
 
 import { createTableName } from "@sdkit/utils/db"
-import { env } from "~/env"
+import { environment } from "~/config"
 import { type Config } from "drizzle-kit"
 
 export default {
@@ -28,7 +28,7 @@ export default {
      * The credentials for the database.
      */
     dbCredentials: {
-        url: env.POSTGRES_URL
+        url: environment.keys.secret.postgresUrl!
     },
 
     /**

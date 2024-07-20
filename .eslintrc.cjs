@@ -66,7 +66,8 @@ const config = {
             }
         ],
 
-        "import/no-anonymous-default-export": ["off"]
+        "import/no-anonymous-default-export": ["off"],
+        "@typescript-eslint/no-namespace": "off"
     }
 }
 

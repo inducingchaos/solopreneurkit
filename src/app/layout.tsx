@@ -23,7 +23,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
     title: "SolopreneurKit",
     description: "The complete personal brand toolkit. Turn your idea into sales in minutes, not months.",
-    icons: [{ rel: "icon", url: "/favicon.ico" }]
+    icons: [{ rel: "icon", url: "/favicon.png" }]
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>): JSX.Element {
