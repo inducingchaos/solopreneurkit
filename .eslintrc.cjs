@@ -49,7 +49,7 @@ const config = {
 
         "comma-dangle": ["warn", "never"],
         quotes: ["warn", "double", { avoidEscape: true }],
-        indent: ["warn", 4, { SwitchCase: 1 }],
+        indent: ["off", 4, { SwitchCase: 1 }],
         "max-len": ["warn", { code: 9999 }],
 
         //  Not compatible with Prettier.

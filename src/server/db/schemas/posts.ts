@@ -5,6 +5,11 @@
  * @tags
  * - #db-schema
  * - #posts
+ * - #schema
+ * - #database-table
+ * - #drizzle
+ * - #postgresql
+ * - #sql
  */
 
 import { createPgTable } from "@sdkit/utils/db"
@@ -12,7 +17,7 @@ import { sql } from "drizzle-orm"
 import { index, serial, timestamp, varchar } from "drizzle-orm/pg-core"
 
 /**
- * A schema for a post.
+ * The schema for a post.
  */
 export const posts = createPgTable(
     "posts",
@@ -25,7 +30,7 @@ export const posts = createPgTable(
         /**
          * The name of the post.
          */
-        name: varchar("name", { length: 256 }),
+        content: varchar("name", { length: 256 }),
 
         /**
          * The date the post was created.
@@ -44,6 +49,6 @@ export const posts = createPgTable(
         /**
          * An index on the name.
          */
-        nameIndex: index("name_idx").on(post.name)
+        nameIndex: index("name_idx").on(post.content)
     })
 )

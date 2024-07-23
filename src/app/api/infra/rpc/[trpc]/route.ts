@@ -1,21 +1,37 @@
+/**
+ * @file Sets up the tRPC API routes for the app.
+ * @author Riley Barabash <riley@rileybarabash.com>
+ *
+ * @tags
+ * - #api
+ * - #route
+ * - #misc
+ * - #request
+ * - #response
+ * - #server
+ * - #trpc
+ * - #rpc
+ * - #query
+ */
+
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch"
 import { type NextRequest } from "next/server"
-
-import { appRouter } from "~/server/api/routers"
-import { createTRPCContext } from "~/server/api/init/rpc"
 import { environment } from "~/config"
+import { createTrpcContext as createTrpcContext, type TRPCContext } from "~/server/api/init/rpc"
+import { appRouter } from "~/server/api/routers"
 
 /**
- * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
- * handling a HTTP request (e.g. when you make requests from Client Components).
+ * Uses the request headers to create the context for tRPC.
  */
-const createContext = async (req: NextRequest) => {
-    return createTRPCContext({
+const createContext = async (req: NextRequest): TRPCContext =>
+    createTrpcContext({
         headers: req.headers
     })
-}
 
-const handler = (req: NextRequest) =>
+/**
+ * Handles incoming requests to the tRPC API.
+ */
+const handler = (req: NextRequest): Promise<Response> =>
     fetchRequestHandler({
         endpoint: environment.paths.routes.trpc,
         req,
@@ -23,8 +39,8 @@ const handler = (req: NextRequest) =>
         createContext: () => createContext(req),
         onError:
             environment.mode === "development"
-                ? ({ path, error }) => {
-                      console.error(`❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}`)
+                ? ({ path, error }): void => {
+                      console.error(`tRPC failed on '${path ?? "<no-path>"}': ${error.message}.`)
                   }
                 : undefined
     })

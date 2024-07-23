@@ -16,7 +16,7 @@ import "server-only"
 
 import { createQueryClient } from "./helpers/query-client"
 import { createHydrationHelpers } from "@trpc/react-query/rsc"
-import { createTRPCContext } from "~/server/api/init/rpc"
+import { createTrpcContext } from "~/server/api/init/rpc"
 import { createCaller, type AppRouter } from "~/server/api/routers"
 import { headers as getHeaders } from "next/headers"
 import { cache } from "react"
@@ -35,7 +35,7 @@ const createContext = cache(() => {
 
     //  Create the context with the new headers.
 
-    return createTRPCContext({ headers })
+    return createTrpcContext({ headers })
 })
 
 /**

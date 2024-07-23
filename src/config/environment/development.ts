@@ -40,6 +40,6 @@ export const developmentEnvironmentConfig: EnvironmentConfigSchema.Development =
          * @type { string | undefined }
          * @default `localhost:${environment.port}`
          */
-        base: "https://27ntzpcq-3000.usw2.devtunnels.ms/"
+        base: undefined
     }
 }

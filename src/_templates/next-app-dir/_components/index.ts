@@ -8,4 +8,4 @@
  * - #barrel
  */
 
-export * from "."
+// export * from "./path"

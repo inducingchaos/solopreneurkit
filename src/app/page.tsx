@@ -3,8 +3,8 @@ import Link from "next/link"
 import { LatestPost } from "~/app/_components/post"
 import { api, HydrateClient } from "~/lib/infra/rpc/server"
 
-export default async function Home() {
-    const hello = await api.posts.hello({ text: "from tRPC" })
+export default async function Home(): Promise<JSX.Element> {
+    const hello = await api.posts.hello({ text: "world!" })
 
     void api.posts.getLatest.prefetch()
 
