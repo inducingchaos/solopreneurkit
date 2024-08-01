@@ -7,12 +7,12 @@
  */
 
 import * as schema from "./schemas"
-import { sql } from "@vercel/postgres"
+import { createPool } from "@vercel/postgres"
 import { drizzle } from "drizzle-orm/vercel-postgres"
+import { environment } from "~/config"
 
 //  Configure the Drizzle instance with the schema.
-
-export const db = drizzle(sql, { schema })
+export const db = drizzle(createPool({ connectionString: environment.keys.secret.databaseUrl }), { schema })
 
 //  Export the type definition of the database.
 

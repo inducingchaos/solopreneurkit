@@ -20,7 +20,7 @@
         "db:migrate": "drizzle-kit migrate",
         "db:push": "drizzle-kit push",
         "db:studio": "drizzle-kit studio",
-        "dev": "next dev --turbo",
+        "dev": "next dev --turbo --port 7548",
         "lint": "next lint",
         "start": "next start",
         "execute": "sh -c 'IFS=\"\" tsx --env-file ./.env ./src/scripts/$@.ts $*' sh",

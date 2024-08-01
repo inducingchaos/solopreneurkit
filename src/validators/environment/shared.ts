@@ -64,14 +64,7 @@ export const sharedEnvironmentConfigSchema = z.object({
 
             /* DATABASE */
 
-            postgresUrl: z.string().optional(),
-            postgresPrismaUrl: z.string().optional(),
-            postgresUrlNoSsl: z.string().optional(),
-            postgresUrlNonPooling: z.string().optional(),
-            postgresUser: z.string().optional(),
-            postgresHost: z.string().optional(),
-            postgresPassword: z.string().optional(),
-            postgresDatabase: z.string().optional()
+            databaseUrl: z.string().optional()
         })
     })
 })

@@ -40,7 +40,7 @@ export const sharedEnvironmentConfig: EnvironmentConfigSchema.Shared = {
          *
          * @type { number | undefined }
          */
-        vercel: process.env.VERCEL!
+        vercel: process.env.VERCEL
     },
 
     /**
@@ -59,7 +59,7 @@ export const sharedEnvironmentConfig: EnvironmentConfigSchema.Shared = {
          *
          * @type { string | undefined }
          */
-        vercel: process.env.VERCEL_URL!
+        vercel: process.env.VERCEL_URL
     },
 
     /**
@@ -115,65 +115,16 @@ export const sharedEnvironmentConfig: EnvironmentConfigSchema.Shared = {
              *
              * @type { string }
              */
-            api: process.env.API_SECRET!,
+            api: process.env.API_SECRET,
 
             /* DATABASE */
 
             /**
-             * The Postgres database URL.
+             * The database connection URL.
              *
              * @type { string }
              */
-            postgresUrl: process.env.POSTGRES_URL!,
-
-            /**
-             * The Postgres Prisma database URL.
-             *
-             * @type { string }
-             */
-            postgresPrismaUrl: process.env.POSTGRES_PRISMA_URL!,
-
-            /**
-             * The Postgres database URL without SSL.
-             *
-             * @type { string }
-             */
-            postgresUrlNoSsl: process.env.POSTGRES_URL_NO_SSL!,
-
-            /**
-             * The Postgres database URL without pooling.
-             *
-             * @type { string }
-             */
-            postgresUrlNonPooling: process.env.POSTGRES_URL_NON_POOLING!,
-
-            /**
-             * The Postgres database user.
-             *
-             * @type { string }
-             */
-            postgresUser: process.env.POSTGRES_USER!,
-
-            /**
-             * The Postgres database host.
-             *
-             * @type { string }
-             */
-            postgresHost: process.env.POSTGRES_HOST!,
-
-            /**
-             * The Postgres database password.
-             *
-             * @type { string }
-             */
-            postgresPassword: process.env.POSTGRES_PASSWORD!,
-
-            /**
-             * The Postgres database name.
-             *
-             * @type { string }
-             */
-            postgresDatabase: process.env.POSTGRES_DATABASE!
+            databaseUrl: process.env.DATABASE_URL
         }
     }
 } as const

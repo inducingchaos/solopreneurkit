@@ -29,7 +29,7 @@ export const developmentEnvironmentConfig: EnvironmentConfigSchema.Development =
      * @type { number | undefined }
      * @default 3000
      */
-    port: undefined,
+    port: 7548,
     /**
      * URL configurations for the app.
      */

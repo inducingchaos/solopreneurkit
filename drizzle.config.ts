@@ -28,7 +28,7 @@ export default {
      * The credentials for the database.
      */
     dbCredentials: {
-        url: environment.keys.secret.postgresUrl!
+        url: environment.keys.secret.databaseUrl!
     },
 
     /**

@@ -159,9 +159,9 @@ export const mergedEnvironmentConfig = {
 // const mode: EnvironmentMode = await environmentMode()
 
 /**
- * HARDCODED ENVIRONMENT MODE. Change to `production` before each commit (or push, which will re-deploy to Vercel).
+ * HARDCODED ENVIRONMENT MODE.
  */
-const mode: EnvironmentMode = "production"
+const mode = process.env.NEXT_PUBLIC_MODE! as EnvironmentMode
 
 //  Dynamically select the default environment configuration based on the environment mode, then append the environment-specific configurations and the environment mode.
 
@@ -171,7 +171,7 @@ const mode: EnvironmentMode = "production"
 export const environment = {
     ...mergedEnvironmentConfig[mode],
     ...mergedEnvironmentConfig,
-    mode: mode as EnvironmentMode
+    mode
 }
 
 //  Export the environment provider type.

@@ -27,7 +27,7 @@ export async function environmentModeHelper(): Promise<string> {
 
     //  Use the custom environment mode if provided.
 
-    if (process.env.MODE) return process.env.MODE
+    if (process.env.NEXT_PUBLIC_MODE) return process.env.NEXT_PUBLIC_MODE
 
     //  If running on Vercel, use the Vercel environment.
 
