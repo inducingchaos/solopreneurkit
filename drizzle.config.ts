@@ -10,26 +10,24 @@
  */
 
 import { createTableName } from "@sdkit/utils/db"
-import { environment } from "~/config"
 import { type Config } from "drizzle-kit"
+// import { environment } from "~/config"
 
 export default {
     /**
-     * Path to the schema export.
+     * Path to the database schema.
      */
     schema: "./src/server/db/schemas/index.ts",
 
     /**
-     * The dialect of the database.
+     * The database type.
      */
-    dialect: "postgresql",
+    dialect: "mysql",
 
     /**
-     * The credentials for the database.
+     * The credentials for connecting to the database.
      */
-    dbCredentials: {
-        url: environment.keys.secret.databaseUrl!
-    },
+    dbCredentials: { url: process.env.DATABASE_URL! },
 
     /**
      * A glob pattern that selects the tables to introspect and push changes to.

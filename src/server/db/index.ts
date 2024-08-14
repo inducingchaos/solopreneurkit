@@ -6,13 +6,14 @@
  * - #database
  */
 
-import * as schema from "./schemas"
-import { createPool } from "@vercel/postgres"
-import { drizzle } from "drizzle-orm/vercel-postgres"
+import { Client } from "@planetscale/database"
+import { drizzle } from "drizzle-orm/planetscale-serverless"
 import { environment } from "~/config"
+import * as schema from "./schemas"
 
 //  Configure the Drizzle instance with the schema.
-export const db = drizzle(createPool({ connectionString: environment.keys.secret.databaseUrl }), { schema })
+
+export const db = drizzle(new Client({ url: environment.keys.secret.databaseUrl }), { schema })
 
 //  Export the type definition of the database.
 

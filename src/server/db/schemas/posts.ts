@@ -8,47 +8,44 @@
  * - #schema
  * - #database-table
  * - #drizzle
- * - #postgresql
+ * - #mysql
  * - #sql
  */
 
-import { createPgTable } from "@sdkit/utils/db"
-import { sql } from "drizzle-orm"
-import { index, serial, timestamp, varchar } from "drizzle-orm/pg-core"
+import { createMysqlTable } from "@sdkit/utils/db"
+import { index, timestamp, varchar } from "drizzle-orm/mysql-core"
+import { v4 as uuid } from "uuid"
 
 /**
  * The schema for a post.
  */
-export const posts = createPgTable(
+export const posts = createMysqlTable(
     "posts",
     {
         /**
          * An ID for the post.
          */
-        id: serial("id").primaryKey(),
-
+        id: varchar("id", { length: 255 }).primaryKey().$defaultFn(uuid),
         /**
-         * The name of the post.
+         * The content of the post.
          */
-        content: varchar("name", { length: 256 }),
+        content: varchar("content", { length: 255 }),
 
         /**
          * The date the post was created.
          */
-        createdAt: timestamp("created_at", { withTimezone: true })
-            .default(sql`CURRENT_TIMESTAMP`)
-            .notNull(),
+        createdAt: timestamp("created_at").notNull().defaultNow(),
 
         /**
          * The date the post was last updated.
          */
-        updatedAt: timestamp("updated_at", { withTimezone: true }).$onUpdate(() => new Date())
+        updatedAt: timestamp("updated_at").notNull().defaultNow().onUpdateNow()
     },
 
     post => ({
         /**
-         * An index on the name.
+         * An index on the post content.
          */
-        nameIndex: index("name_idx").on(post.content)
+        contentIndex: index("content_idx").on(post.content)
     })
 )

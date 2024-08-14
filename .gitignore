@@ -46,3 +46,8 @@ out
 
 .DS_Store
 *.pem
+
+# Temporary.
+
+examples
+templating
