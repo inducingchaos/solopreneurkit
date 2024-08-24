@@ -1,36 +1,87 @@
+/**
+ * @file Returns the latest post in the database.
+ * @author Riley Barabash <riley@rileybarabash.com>
+ *
+ * @tags
+ * - #component
+ * - #page
+ * - #post
+ * - #client
+ * - #tsx
+ *
+ * @todo
+ * - [P0] Restore online functionality for data fetching.
+ * - [P0] Add types.
+ * - [P0] Review ?'s.
+ */
+
 "use client"
 
 import { useState } from "react"
-
 import { api } from "~/lib/infra/rpc/react"
 
-export function LatestPost(): JSX.Element {
-    const [latestPost] = api.posts.getLatest.useSuspenseQuery()
+export function Post(): JSX.Element {
+    //  Fetches the latest post as a Suspense query.
+
+    const [post] = api.posts.getLatest.useSuspenseQuery()
+
+    //  ?
 
     const utils = api.useUtils()
+
+    //  Create the state for the input field.
+
     const [content, setContent] = useState("")
+
+    /**
+     * Adds an `onSuccess` handler to the `createPost` tRPC mutation.
+     */
     const createPost = api.posts.create.useMutation({
         onSuccess: async () => {
+            //  Re-fetches the data fetched from the `posts` endpoint.
+
             await utils.posts.invalidate()
+
+            //  Clears the input.
+
             setContent("")
         }
     })
 
     return (
-        <div className="w-full max-w-xs">
-            {latestPost ? <p className="truncate">Your most recent post: {latestPost.content}</p> : <p>You have no posts yet.</p>}
-            <form
-                onSubmit={e => {
-                    e.preventDefault()
-                    createPost.mutate({ content })
-                }}
-                className="flex flex-col gap-2"
-            >
-                <input type="text" placeholder="Title" value={content} onChange={e => setContent(e.target.value)} className="w-full rounded-full px-4 py-2 text-black" />
-                <button type="submit" className="rounded-full bg-white/10 px-10 py-3 font-semibold transition hover:bg-white/20" disabled={createPost.isPending}>
-                    {createPost.isPending ? "Submitting..." : "Submit"}
-                </button>
-            </form>
-        </div>
+        <>
+            {/* Content wrapper. */}
+
+            <div className="w-full max-w-xs">
+                {/* Displays the post content. */}
+
+                {post ? <p className="truncate">Recent: {post.content}</p> : <p>No posts.</p>}
+
+                {/* The form for creating a post. */}
+
+                <form
+                    onSubmit={e => {
+                        //  Prevents a page reload on submission.
+
+                        e.preventDefault()
+
+                        //  Creates a post from the input content.
+
+                        createPost.mutate({ content })
+                    }}
+                    className="flex flex-col gap-2"
+                >
+                    {/* The input for the post content. */}
+
+                    <input type="text" placeholder="Write something here..." value={content} onChange={e => setContent(e.target.value)} className="w-full rounded-md px-4 py-2" />
+
+                    {/* The button for submitting post content. */}
+
+                    <button type="submit" className="rounded-md bg-black px-8 py-2 font-bold text-white transition hover:opacity-50" disabled={createPost.isPending}>
+                        {!createPost.isPending ? "Submit" : "Submitting..."}
+                    </button>
+                </form>
+            </div>
+        </>
     )
 }
