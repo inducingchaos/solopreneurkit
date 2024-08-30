@@ -10,9 +10,7 @@
  * - #tsx
  *
  * @todo
- * - [P0] Restore online functionality for data fetching.
  * - [P0] Add types.
- * - [P0] Review ?'s.
  */
 
 "use client"
@@ -25,7 +23,7 @@ export function Post(): JSX.Element {
 
     const [post] = api.posts.getLatest.useSuspenseQuery()
 
-    //  ?
+    //  Exposes the tRPC utilities.
 
     const utils = api.useUtils()
 
@@ -55,7 +53,7 @@ export function Post(): JSX.Element {
             <div className="w-full max-w-xs">
                 {/* Displays the post content. */}
 
-                {post ? <p className="truncate">Recent: {post.content}</p> : <p>No posts.</p>}
+                {post ? <p className="truncate py-2">Recent: {post.content}</p> : <p>No posts.</p>}
 
                 {/* The form for creating a post. */}
 
@@ -73,11 +71,11 @@ export function Post(): JSX.Element {
                 >
                     {/* The input for the post content. */}
 
-                    <input type="text" placeholder="Write something here..." value={content} onChange={e => setContent(e.target.value)} className="w-full rounded-md px-4 py-2" />
+                    <input type="text" placeholder="Write something here..." value={content} onChange={e => setContent(e.target.value)} className="w-full rounded-md bg-black/10 px-4 py-2" />
 
                     {/* The button for submitting post content. */}
 
-                    <button type="submit" className="rounded-md bg-black px-8 py-2 font-bold text-white transition hover:opacity-50" disabled={createPost.isPending}>
+                    <button type="submit" className="rounded-md bg-black px-4 py-2 text-white transition hover:opacity-50" disabled={createPost.isPending}>
                         {!createPost.isPending ? "Submit" : "Submitting..."}
                     </button>
                 </form>

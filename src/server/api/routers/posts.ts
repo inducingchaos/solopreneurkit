@@ -39,7 +39,7 @@ export const postsRouter = createTRPCRouter({
             //  The response object.
 
             return {
-                greeting: `Hello ${input.text}`
+                content: `Hello, ${input.text}`
             }
         }),
 
